@@ -3,14 +3,7 @@
 #include<stdlib.h>
 #include<math.h>
 
-char charset[] = {
-        '!', '"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/',
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?',
-        '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-        'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', ']', '^', '_',
-        '`', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-        'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~'
-};
+#include "config.h"
 
 int power(long v, int n) {
    if(n == 1) 
@@ -41,11 +34,10 @@ int main(int argc, char **argv) {
 
     int size = sizeof(charset)/sizeof(char);
 	for(int i=2;i<strlen(word) + 2;++i) {
-        //printf("%d ", (int)(1/power(word[i],1) * power(size,2)));
         if(word[i-2] != ' ')
             printf("%c", 
                     charset[ 
-                        (int)(power(size,2) * (word[i-2] + 10)/power(word[i-2],2))
+                        (int)F_e(word[i-2],size)
                     ]
             );
             if(i % 38 == 0)
